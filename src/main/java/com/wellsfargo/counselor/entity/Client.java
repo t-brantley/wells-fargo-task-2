@@ -7,10 +7,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 @Entity
-public class Advisor {
+public class Client {
 
     @Id
     @GeneratedValue()
+    private long clientId;
+
+    @Column(nullable = false)
     private long advisorId;
 
     @Column(nullable = false)
@@ -28,11 +31,12 @@ public class Advisor {
     @Column(nullable = false)
     private String email;
 
-    protected Advisor() {
+    protected Client() {
 
     }
 
-    public Advisor(String firstName, String lastName, String address, String phone, String email) {
+    public Client(long advisorId, String firstName, String lastName, String address, String phone, String email) {
+        this.advisorId = advisorId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
@@ -40,8 +44,16 @@ public class Advisor {
         this.email = email;
     }
 
+    public long getClientId() {
+        return this.clientId;
+    }
+
     public long getAdvisorId() {
         return advisorId;
+    }
+
+    public void setAdvisorId(long advisorId) {
+        this.advisorId = advisorId;
     }
 
     public String getFirstName() {
@@ -84,3 +96,4 @@ public class Advisor {
         this.email = email;
     }
 }
+
